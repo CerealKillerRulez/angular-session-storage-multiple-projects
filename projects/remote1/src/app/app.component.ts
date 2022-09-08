@@ -11,7 +11,7 @@ export class AppComponent  implements OnInit, OnDestroy {
   title = 'remote1';
   private subs = new Subscription();
   public appData = <AppDataModel>{};
-    
+  
   constructor(
     private storage: CrossDomainStorageService
   ) {
@@ -21,9 +21,10 @@ export class AppComponent  implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.initSubscriptions();
     this.storage.setContainerWindow(window);
-    this.storage.startListeningFromHost();  
+    this.storage.startListeningFromHost(); 
   }
 
+  /** Aspetto che la remote abbia terminato il bind con l'host e caricato i dati nella sessionstorage per leggere i dati arrivati dall'host */
   initSubscriptions(): void {
     this.subs.add(
       this.storage.isHostBounded().subscribe(
@@ -35,6 +36,7 @@ export class AppComponent  implements OnInit, OnDestroy {
     );
   }
 
+  /** Unsubscribe di tutti gli observables */
   public ngOnDestroy(): void {
     this.subs.unsubscribe();
     this.storage.unboundHost();

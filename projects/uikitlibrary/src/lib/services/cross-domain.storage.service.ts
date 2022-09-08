@@ -1,6 +1,6 @@
 import { Observable, Subject } from "rxjs";
 
-/** Contratto di un servizio di gestione dati criptati in uno storage.
+/** Contratto di un servizio di gestione dati criptati in uno storage locale. 
  *  Può avere più declinazioni in base all'implementazione: Session Storage, Local Storage, File di testo, Api di caching
  */
 export abstract class CrossDomainStorageService {

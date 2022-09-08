@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppDataModel, CrossDomainStorageService, MenuItem } from 'uikitlibrary';
+import { CrossDomainStorageService, MenuItem } from 'uikitlibrary';
 import { REMOTE_APP_TYPE } from './enums/REMOTE_APP_TYPE';
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { REMOTE_APP_TYPE } from './enums/REMOTE_APP_TYPE';
 })
 export class AppComponent implements OnInit {
   public items = <MenuItem[]>[];
-
+  
   constructor(
     private storage: CrossDomainStorageService
   ) {

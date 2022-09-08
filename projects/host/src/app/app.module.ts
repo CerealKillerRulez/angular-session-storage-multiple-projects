@@ -9,6 +9,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { UikitlibraryModule } from 'uikitlibrary';
 import { RemoteLoaderComponent } from './containers/remote-loader/remote-loader.component';
 import { HomeComponent } from './containers/home/home.component';
+import { AppData } from './appdata';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { HomeComponent } from './containers/home/home.component';
     AppRoutingModule,
     UikitlibraryModule
   ],
-  providers: [],
+  providers: [
+    { provide: AppData, useValue: (<any> window).APP_DATA },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

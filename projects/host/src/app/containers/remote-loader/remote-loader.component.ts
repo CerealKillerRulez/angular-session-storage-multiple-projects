@@ -3,7 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'projects/host/src/environments/environment';
 import { Subscription } from 'rxjs';
-import { AppDataModel, CrossDomainStorageService, MenuItem } from 'uikitlibrary';
+import { CrossDomainStorageService, MenuItem } from 'uikitlibrary';
 import { REMOTE_APP_TYPE } from '../../enums/REMOTE_APP_TYPE';
 
 @Component({
