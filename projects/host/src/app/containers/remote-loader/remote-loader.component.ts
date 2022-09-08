@@ -3,7 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'projects/host/src/environments/environment';
 import { Subscription } from 'rxjs';
-import { MenuItem, CrossDomainStorageService } from 'uikitlibrary';
+import { AppDataModel, CrossDomainStorageService, MenuItem } from 'uikitlibrary';
 import { REMOTE_APP_TYPE } from '../../enums/REMOTE_APP_TYPE';
 
 @Component({
@@ -48,10 +48,10 @@ export class RemoteLoaderComponent implements OnDestroy, OnInit, AfterViewInit {
     setTimeout(() => {
 
       const valueToSend = {
-        userid: 1,
+        userid: 100,
         username: 'a.galli',
         stores: [<MenuItem>{id: '405', label: 'Abbiategrasso'}]
-      };
+    }
   
       this.crossDomain.sendDataToRemote('appData', valueToSend);
       

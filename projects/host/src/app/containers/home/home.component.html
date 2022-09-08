@@ -4,6 +4,7 @@
     <h3>DATI DI CONTESTO</h3>
     <div>        
         Di seguito i dati di contesto della sessione generati dal progetto host e salvati nella session storage (simulano i dati ottenuti a seguito di un'autenticazione), che verranno letti dalle app remote.. <br/>
+        <b>{{appData |json}}</b>
         I dati sono criptati e si distruggono automaticamente alla chiusura del browser.<br/>
         Non è inoltre possibile condividere il context tra tab dello stesso browser o finestre differenti.
     </div>
@@ -15,10 +16,9 @@
         Per questo esempio la library è locale ma, nel caso in cui le remote app si trovassero in repository devops differenti, è possibile pubblicare la library su npm o in una cartella di rete.
     </div>
 
-    <h3>BASE CONTAINER, SESSION STORAGE ED ENCRYPT</h3>
+    <h3>CROSS DOMAIN SESSION STORAGE ED ENCRYPT</h3>
     <div>
-        Il provider che si occupa della gestione della sessionStorage e di criptare i dati si trova nella library e si chiama <code>SessionStorageService</code> che implementa la classe astratta <code>StorageService</code> usata come reference nei componanti tramite Dependency Injection.
-        Per fornire a tutti i containers i dati di contesti, è stato creato un componente Container base che estende tutti i containers delle varie applicazioni e, all'init del componente, esegue la lettura e la decriptazione dei dati di contesto dal session storage.
+        Il provider che si occupa della gestione della sessionStorage e di criptare i dati si trova nella library e si chiama <code>CrossDomainSessionStorageService</code> che implementa la classe astratta <code>CrossDomainStorageService</code> usata come reference nei componanti tramite Dependency Injection.
     </div>
 
     <h3>CONCURRENTLY</h3>

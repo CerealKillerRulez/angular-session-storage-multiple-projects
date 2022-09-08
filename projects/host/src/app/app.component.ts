@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppDataModel, MenuItem } from 'uikitlibrary';
+import { AppDataModel, CrossDomainStorageService, MenuItem } from 'uikitlibrary';
 import { REMOTE_APP_TYPE } from './enums/REMOTE_APP_TYPE';
 @Component({
   selector: 'app-root',
@@ -9,20 +9,26 @@ import { REMOTE_APP_TYPE } from './enums/REMOTE_APP_TYPE';
 export class AppComponent implements OnInit {
   public items = <MenuItem[]>[];
 
+  constructor(
+    private storage: CrossDomainStorageService
+  ) {
+  }
+
   ngOnInit(): void {
-   // this.initAppData();
+    this.initAppData();
     this.initMenuItems();
   }
 
 
   /** Inizializza i dati di contesto che verranno letti dalle app remote */
   private initAppData(): void {
-    sessionStorage.setItem("appData", JSON.stringify(<AppDataModel> {
-      userid: 1,
-      username: 'a.galli',
-      stores: [<MenuItem>{id: '405', label: 'Abbiategrasso'}]
-    }));
+    this.storage.setItem('appData', {
+        userid: 100,
+        username: 'a.galli',
+        stores: [<MenuItem>{id: '405', label: 'Abbiategrasso'}]
+    });
   }
+
 
   /** Inizializza la struttura del menu principale */
   private initMenuItems(): void {

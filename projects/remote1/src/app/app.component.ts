@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { fromEvent, Subscription } from 'rxjs';
-import { CrossDomainStorageService } from 'uikitlibrary';
+import { Subscription } from 'rxjs';
+import { AppDataModel, CrossDomainStorageService } from 'uikitlibrary';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,34 @@ import { CrossDomainStorageService } from 'uikitlibrary';
 export class AppComponent  implements OnInit, OnDestroy {
   title = 'remote1';
   private subs = new Subscription();
-  
-  constructor(private crossDomain: CrossDomainStorageService) {
+  public appData = <AppDataModel>{};
+    
+  constructor(
+    private storage: CrossDomainStorageService
+  ) {
 
   }
-
+  
   public ngOnInit(): void {
-    this.crossDomain.setContainerWindow(window);
-    this.crossDomain.startListeningFromHost();
+    this.initSubscriptions();
+    this.storage.setContainerWindow(window);
+    this.storage.startListeningFromHost();  
+  }
+
+  initSubscriptions(): void {
+    this.subs.add(
+      this.storage.isHostBounded().subscribe(
+        () => {
+          console.log("Remote 1 host Bounded");
+          this.appData = this.storage.getItem('appData');
+        }
+      )
+    );
   }
 
   public ngOnDestroy(): void {
     this.subs.unsubscribe();
+    this.storage.unboundHost();
   }
 }
 
