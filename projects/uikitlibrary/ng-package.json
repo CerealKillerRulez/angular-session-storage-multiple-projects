@@ -8,6 +8,7 @@
     "crypto-js",
     "primeng",
     "primeicons",
-    "@types/crypto-js"
+    "@types/crypto-js",
+    "@repugraf/cross-domain-storage"
   ]
 }

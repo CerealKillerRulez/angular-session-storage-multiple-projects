@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { StorageService } from '../public-api';
-import { SessionStorageService } from '../public-api';
-
+import { CrossDomainSessionStorageService } from './services/cross-domain-session-storage.service';
+import { CrossDomainStorageService } from './services/cross-domain.storage.service';
 @NgModule({
   declarations: [
   ],
@@ -9,6 +8,8 @@ import { SessionStorageService } from '../public-api';
   ],
   exports: [
   ],
-  providers: [{ provide: StorageService, useClass: SessionStorageService }],
+  providers: [
+    { provide: CrossDomainStorageService, useClass: CrossDomainSessionStorageService }
+  ],
 })
 export class UikitlibraryModule { }

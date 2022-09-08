@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  remoteHostName: 'http://localhost:4201/',
+  remotesCatalog: [
+    'http://localhost:4201/',
+    'http://localhost:4202/'
+  ]
 };
 
 /*

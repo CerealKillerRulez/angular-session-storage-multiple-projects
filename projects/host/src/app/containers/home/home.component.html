@@ -1,0 +1,35 @@
+<div class="home-container">
+    <h2>Benvenuti nell'applicazione HOST</h2>
+
+    <h3>DATI DI CONTESTO</h3>
+    <div>        
+        Di seguito i dati di contesto della sessione generati dal progetto host e salvati nella session storage (simulano i dati ottenuti a seguito di un'autenticazione), che verranno letti dalle app remote.. <br/>
+        I dati sono criptati e si distruggono automaticamente alla chiusura del browser.<br/>
+        Non è inoltre possibile condividere il context tra tab dello stesso browser o finestre differenti.
+    </div>
+        
+    <h3>ANGULAR LIBRARY</h3>
+    <div>        
+        Tutti gli elementi comuni ai progetti host, remote1 e remote2 sono contenuti in una library: tools, dipendenze, componenti e servizi base sono cencralizzati ed esposti tramite la library, in modo da non copiaincollare elementi necessari a progetti diversi (DRY Principle).<br/>
+        Per referenziare la lib nei progetti si procede con il solito comando di installazione dei package <code>npm i uikitlibrary</code> assicurandosi di essere all'interno del patch dell'app in cui si vuole installare la library. <br/>
+        Per questo esempio la library è locale ma, nel caso in cui le remote app si trovassero in repository devops differenti, è possibile pubblicare la library su npm o in una cartella di rete.
+    </div>
+
+    <h3>BASE CONTAINER, SESSION STORAGE ED ENCRYPT</h3>
+    <div>
+        Il provider che si occupa della gestione della sessionStorage e di criptare i dati si trova nella library e si chiama <code>SessionStorageService</code> che implementa la classe astratta <code>StorageService</code> usata come reference nei componanti tramite Dependency Injection.
+        Per fornire a tutti i containers i dati di contesti, è stato creato un componente Container base che estende tutti i containers delle varie applicazioni e, all'init del componente, esegue la lettura e la decriptazione dei dati di contesto dal session storage.
+    </div>
+
+    <h3>CONCURRENTLY</h3>
+    <div>
+        In uno scenario reale, tutte le applicazioni sarebbero deployate su server o virtual directory diverse, ed esposti tramite uri. Per simulare questa cosa in debug è stato installato un package che si chiama <code>concurrently</code> il cui scopo è quello di lanciare simultaneamente tutti i progetti su porte differenti.
+        Una volta installato (<code>npm i concurrently</code>) si dovrà configurare nel package.json, creando uno script npm o sfruttandone uno già esistente. <br/>
+        Nel nostro caso sfruttiamo il comando <code>npm start</code> e nel package.json andiamo ad associargli il seguente comando concurrently: <code>"start": "concurrently \"ng serve host --port 4200 -o \" \"ng serve remote1 --port 4201 -o \" \"ng serve remote2 --port 4202 -o \" ",</code>
+        
+    </div>
+    
+</div>
+
+
+

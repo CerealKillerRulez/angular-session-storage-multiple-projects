@@ -6,6 +6,7 @@
     "@angular/core": "^14.0.0"
   },
   "dependencies": {
+    "@repugraf/cross-domain-storage": "^1.0.4",
     "crypto-js": "^4.1.1",
     "primeicons": "^5.0.0",
     "primeng": "^14.0.2",
