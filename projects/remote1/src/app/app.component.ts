@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppDataModel, CrossDomainStorageService } from 'uikitlibrary';
 
@@ -7,7 +7,7 @@ import { AppDataModel, CrossDomainStorageService } from 'uikitlibrary';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  implements OnInit, OnDestroy {
+export class AppComponent  implements OnInit, AfterViewInit, OnDestroy {
   title = 'remote1';
   private subs = new Subscription();
   public appData = <AppDataModel>{};
@@ -19,10 +19,17 @@ export class AppComponent  implements OnInit, OnDestroy {
   }
   
   public ngOnInit(): void {
+    console.log('remote1: parte oninit');
     this.initSubscriptions();
     this.storage.setContainerWindow(window);
     this.storage.startListeningFromHost(); 
   }
+
+  
+  public ngAfterViewInit(): void {
+    console.log('remote2: parte AfterViewInit');
+  }
+
 
   /** Aspetto che la remote abbia terminato il bind con l'host e caricato i dati nella sessionstorage per leggere i dati arrivati dall'host */
   initSubscriptions(): void {

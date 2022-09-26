@@ -7,7 +7,7 @@ import { AppDataModel, CrossDomainStorageService } from 'uikitlibrary';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  implements OnInit, OnDestroy {
+export class AppComponent  implements OnInit, AfterViewInit, OnDestroy {
   title = 'remote2';
   private subs = new Subscription();
   public appData = <AppDataModel>{};
@@ -19,9 +19,14 @@ export class AppComponent  implements OnInit, OnDestroy {
   }
   
   public ngOnInit(): void {
+    console.log('remote2: parte oninit');
     this.initSubscriptions();
     this.storage.setContainerWindow(window);
     this.storage.startListeningFromHost();
+  }
+
+  public ngAfterViewInit(): void {
+    console.log('remote2: parte AfterViewInit');
   }
 
   initSubscriptions(): void {

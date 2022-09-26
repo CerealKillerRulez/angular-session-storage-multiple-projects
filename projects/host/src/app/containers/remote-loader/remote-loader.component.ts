@@ -26,10 +26,13 @@ export class RemoteLoaderComponent implements OnDestroy, OnInit, AfterViewInit {
   
   ngOnInit(): void {
     this.getParameters();
+    console.log('host: parte oninit');
+    debugger;
   }
 
 
   ngAfterViewInit(): void {
+    console.log('parte afterviewinit')
     this.crossDomain.setContainerWindow(this.remoteapploader.nativeElement.contentWindow);
     this.postAppDataToRemoteApp();
   }
@@ -52,9 +55,9 @@ export class RemoteLoaderComponent implements OnDestroy, OnInit, AfterViewInit {
         username: 'a.galli',
         stores: [<MenuItem>{id: '405', label: 'Abbiategrasso'}]
     }
-  
-      this.crossDomain.sendDataToRemote('appData', valueToSend);
-      
+
+      this.crossDomain.sendDataToRemote('appData', valueToSend);      
+
     }, 1000);
   }
 
