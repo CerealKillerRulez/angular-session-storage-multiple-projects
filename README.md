@@ -1,5 +1,12 @@
 # SessionStorage
 
+Zozzeria creata per un cliente che non voleva utilizzare angular module federation per creare un ecosistema di micro-frontend che dialogassero all'interno di un'applicazione container.
+
+Trattandosi di un'applicazione legacy si è pensato di passare i dati di contesto tra applicazione host e applicazioni remote sfruttando un passggio il passaggio di dati attraverso l'iframe (maledetti iframe) che espone le app remote.
+
+Il tutto viene salvato nel session storage e criptato con CryptoJs.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
 
 ## Development server
